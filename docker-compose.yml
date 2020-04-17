@@ -1,0 +1,23 @@
+version: "3.1"
+services:
+  springapp:
+    image: devopskarthikl/springapp:6
+    ports: 
+    - 9090:8080
+    container_name: webapp1
+    networks:
+    - springnet
+    
+  mongo:
+    image: mongo
+    container_name: mongo
+    networks:
+    - springnet
+    volumes:
+    - springbpk:/data/db
+
+volumes:
+  springbpk:
+      
+networks:
+  springnet:
