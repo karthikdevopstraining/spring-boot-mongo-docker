@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   springcontainer:
-    image: 13.232.204.242:8083/springboot
+    image: 13.232.34.182/springboot:latest
     ports:
     - 9090:8080
     container_name: springapp
