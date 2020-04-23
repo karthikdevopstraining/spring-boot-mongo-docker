@@ -15,8 +15,8 @@
 	<version>1.0</version>
 	<properties>
 		<java.version>1.8</java.version>
-		<sonar.host.url>http://13.232.34.182:9000/</sonar.host.url>
-		<sonar.login>4728ca9709667d3711589db61da4c87e4cae4657</sonar.login> 
+		<!-- <sonar.host.url>http://13.232.34.182:9000/</sonar.host.url>
+		<sonar.login>4728ca9709667d3711589db61da4c87e4cae4657</sonar.login> --> 
 	</properties>
 	<dependencies>
 		<dependency>
@@ -49,7 +49,7 @@
 		</dependency>
 	</dependencies>
 	
-	 <distributionManagement>
+	 <!--<distributionManagement>
 	    <repository>
 	      <id>nexus</id>
 	      <name>karthik</name>
@@ -60,7 +60,7 @@
 	      <name>karthik</name>
 	      <url>http://13.232.34.182:8081/repository/spring-snapshot/</url>
 	    </snapshotRepository>
-	</distributionManagement>
+	</distributionManagement> -->
 	
 	<build>
 		<plugins>
