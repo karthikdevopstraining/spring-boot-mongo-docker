@@ -9,7 +9,7 @@ services:
     container_name: springapp
     restart: always
     depends_on: 
-    - mongoapp
+    - mongo
     deploy:
       replicas: 3
       update_config:
@@ -20,7 +20,7 @@ services:
         delay: 10s
         max_attempts: 5
 
-  mongoapp:
+  mongo:
     image: mongo
     container_name: apkmongo
     volumes:
@@ -35,4 +35,4 @@ volumes:
 networks:
   default:
     external:
-      name: customoverlay  
+      name: customoverlay
