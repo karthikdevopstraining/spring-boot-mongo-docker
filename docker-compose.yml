@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+  springboot:
+    image: devopskarthikl/bootspring:latest
+	ports:
+	- 8080:8080
+	working_dir: /opt/app
+	container_name: springapp
+	restart: always
+	depends_on: 
+	- mongoapp
+	deploy:
+	  replicas: 3
+	  update_config:
+	    parallelism: 1
+		delay: 20s
+	  restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 5
+
+  mongoapp:
+    image: mongo
+    container_name: apkmongo
+	volumes:
+    - data:/data/db
+    - data-bkp:/data/bkp
+    restart: always
+	
+volumes:
+  data:
+  data-bkp:
+
+networks:
+  default:
+    external:
+      name: customoverlay  
