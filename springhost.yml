@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: springrc
+  namespace: flipkart
+spec:
+  replicas: 2
+  selector:
+    app: springwebapp
+  template:
+    metadata:
+      name: springpod
+      namespace: flipkart
+      labels:
+        app: springwebapp
+    spec:
+      containers:
+      - name: springcontainer
+        image: devopskarthikl/bootspring
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: springservice
+  namespace: flipkart
+spec:
+  type: NodePort
+  selector:
+    app: springwebapp
+  ports:
+  - port: 80
+    targetPort: 8080
+  #nodePort not mentioned if we want to mention it should be within 30000 to 32767
+---
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: mongorc
+  namespace: flipkart
+spec:
+  replicas: 1
+  selector:
+    app: mongoapp
+  template:
+    metadata:
+      name: mongopod
+      namespace: flipkart
+      labels:
+        app: mongoapp
+    spec:
+      containers:
+      - name: mongocontainer
+        image: mongo
+        ports:
+        - containerPort: 27017 #remember springboot port 27017
+        volumeMounts: #2 typs HOSTPATH and NFS refer springnfs.yml fo NFS volume
+        - name: hostpathvolume # any name
+          mountPath: /data/db # container folder
+      volumes:
+      - name: hostpathvolume # should be same as above name
+        hostPath: # type chanes for nfs
+          path: /tmp/mongobackup #backup folder will be created by k8 in worker node where mongo pod will be created which is DISADVANTAGE
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo # here name mongo is compulsory bcoz it has been hardcoded by dev
+  namespace: flipkart
+spec:
+  type: ClusterIP
+  selector:
+    app: mongoapp
+  ports:
+  - port: 27017 #same bcoz it is a database
+    targetPort: 27017
