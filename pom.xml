@@ -58,7 +58,7 @@
 	      <name>karthik</name>
 	      <url>http://13.233.199.73:8081/repository/spring-boost-snapshot/</url>
 	    </snapshotRepository>
-	</distributionManagement> -->
+	</distributionManagement> 
 	
 	
 	<build>
