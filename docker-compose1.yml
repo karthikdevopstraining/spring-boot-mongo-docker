@@ -1,0 +1,33 @@
+version: "3.1"
+services:
+  springbootapp:
+    image: 172.31.11.149:8083/springboot:3
+    container_name: springapp
+    ports:
+    - 9090:8080
+    depends_on: 
+    - mongo
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 20s
+      restart_policy:
+        condition: on-failure
+        delay: 140S
+        max_attempt: 5
+
+  mongo:
+    image: mongo
+    container_name: springmondo
+    volumes:
+    - databpk: data/db
+    restart: always
+
+volumes:
+  databpk
+
+networks:
+  default:
+    external:
+      name: customoverlay
