@@ -15,7 +15,7 @@ services:
       restart_policy:
         condition: on-failure
         delay: 10s
-        max_attempt: 5
+        #max_attempt: 5
 
   mongo:
     image: mongo
