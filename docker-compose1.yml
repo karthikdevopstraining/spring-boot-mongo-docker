@@ -21,7 +21,7 @@ services:
     image: mongo
     container_name: springmondo
     volumes:
-    - databpk: data/db
+    - databpk:/data/db
     restart: always
 
 volumes:
