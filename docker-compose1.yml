@@ -25,7 +25,7 @@ services:
     restart: always
 
 volumes:
-  databpk
+  databpk:
 
 networks:
   default:
