@@ -14,7 +14,7 @@ services:
         delay: 20s
       restart_policy:
         condition: on-failure
-        delay: 140S
+        delay: 10s
         max_attempt: 5
 
   mongo:
